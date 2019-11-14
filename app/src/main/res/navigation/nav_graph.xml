@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/nav_graph"
+            app:startDestination="@id/newPrivacyPolicyFragment"
+            tools:ignore="UnusedNavigation">
+
+    <fragment android:id="@+id/newPrivacyPolicyFragment"
+              android:name="com.example.navcomponents.NewPrivacyPolicyFragment"
+              android:label="fragment_new_privacy_policy"
+              tools:layout="@layout/fragment_new_privacy_policy">
+        <action android:id="@+id/action_newPrivacyPolicyFragment_to_homeFragment"
+                app:destination="@id/homeFragment"/>
+    </fragment>
+    <fragment android:id="@+id/homeFragment"
+              android:name="com.example.navcomponents.HomeFragment"
+              android:label="fragment_home"
+              tools:layout="@layout/fragment_home"/>
+</navigation>
