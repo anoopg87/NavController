@@ -5,6 +5,14 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  
+  workflow_dispatch:
+    inputs:
+      url: 
+        description: 'Url'
+        required: true
+        default: 'www.google.com'
+      
 
 jobs:
   build:
