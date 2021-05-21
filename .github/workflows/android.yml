@@ -25,7 +25,7 @@ jobs:
       shell: bash
       run: |
       
-        echo "::set-output name=branch:${ if(GITHUB_ACTION_NAME == 'push')GITHUB_REF#refs/heads/ else GITHUB_HEAD_REF#refs/heads}"
+        echo "::set-output name=branch:${GITHUB_REF#refs/heads/}"
         echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
         echo "::set-output name=sha_long::$(git rev-parse HEAD)"
           
