@@ -24,8 +24,8 @@ jobs:
     - id: current_branch
       shell: bash
       run: |
-        echo $GITHUB_EVENT_NAME
-        if [ ${{GITHUB_EVENT_NAME}} == 'pull_request' ]
+        echo ${GITHUB_EVENT_NAME}
+        if [ ${GITHUB_EVENT_NAME} == 'pull_request' ]
           then
           echo "::set-output name=branch:${GITHUB_HEAD_REF##*/}"
         else
