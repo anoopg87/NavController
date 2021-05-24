@@ -25,7 +25,7 @@ jobs:
       shell: bash
       run: |
       
-        echo "::set-output name=branch:${{ github.ref }}"
+        echo "::set-output name=branch:${GITHUB_REF##*/}"
         echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
         echo "::set-output name=sha_long::$(git rev-parse HEAD)"
           
