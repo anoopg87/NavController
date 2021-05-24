@@ -27,9 +27,9 @@ jobs:
         echo ${GITHUB_EVENT_NAME}
         if [ ${GITHUB_EVENT_NAME} == 'pull_request' ]
           then
-          echo "::set-output name=branch:${GITHUB_HEAD_REF##*/}"
+          echo "::set-output name=branch:${GITHUB_HEAD_REF#refs/heads/}"
         else
-          echo "::set-output name=branch:${GITHUB_REF##*/}"
+          echo "::set-output name=branch:${GITHUB_REF#/refs/heads/}"
         fi
         echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
         echo "::set-output name=sha_long::$(git rev-parse HEAD)"
