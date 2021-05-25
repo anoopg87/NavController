@@ -2,7 +2,7 @@ name: Android CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, test_branch ]
   pull_request:
     branches: [ master ]
   
@@ -24,13 +24,24 @@ jobs:
     - id: current_branch
       shell: bash
       run: |
-      
-        echo "::set-output name=branch::${GITHUB_REF}"
+        if [ ${GITHUB_EVENT_NAME} == 'pull_request' ]
+          then
+          echo "##[set-output name=branch;]$(echo ${GITHUB_HEAD_REF#refs/heads/})"
+        else
+          echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        fi
         echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
         echo "::set-output name=sha_long::$(git rev-parse HEAD)"
           
     - name: Checkout ${{ steps.current_branch.outputs.branch }} branch
       uses: actions/checkout@v2
+      
+    - id: last_commit
+      shell: bash
+      run: |
+        echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+        echo "::set-output name=sha_long::$(git rev-parse HEAD)"
+        
     - name: set up JDK 11
       uses: actions/setup-java@v2
       with:
